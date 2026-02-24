@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1">Create Role</h4>
+
+            </div><!-- end card header -->
+            <div class="card-body">
+                <div class="live-preview">
+                    <div class="row">
+
+                        <form [formGroup]="roleForm">
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="exampleInputrounded" class="form-label">Role
+                                </label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Role" formControlName="roleName">
+                            </div>
+
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="d-flex flex-wrap gap-2  searhbtn">
+                                    <button type="button"
+                                        class="btn btn-primary waves-effect waves-light" (click)="createRole()">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- .col-->
+
+
+    </div> <!-- end row-->

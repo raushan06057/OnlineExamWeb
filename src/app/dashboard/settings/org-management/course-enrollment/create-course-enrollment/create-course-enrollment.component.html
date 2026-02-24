@@ -1,0 +1,86 @@
+<div class="row">
+    <form [formGroup]="createEnrollmentForm">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Create Course Enrollment</h4>
+                </div>
+                <div class="card-body">
+                    <div class="live-preview">
+                        <div class="row">
+                              <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="organizationId" class="form-label">Organization</label>
+                                <select class="form-select rounded-pill mb-3" id="organizationId" (change)="getCourses($event);getStudents($event);"
+                                    formControlName="organizationId">
+                                    <option value="">Select Organization</option>
+                                    <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="createEnrollmentForm.get('organizationId')?.hasError('required') && createEnrollmentForm.get('organizationId')?.touched"
+                                    class="text-danger">
+                                    Organization is required.
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="studentId" class="form-label">Student</label>
+                                <select class="form-select rounded-pill" id="studentId" formControlName="studentId">
+                                    <option value="">Select Student</option>
+                                    <option *ngFor="let student of students" [value]="student.id">
+                                        {{ student.firstName }} {{ student.lastName }} - {{ student.phoneNumber }}
+                                    </option>
+                                </select>
+                                <div
+                                    *ngIf="createEnrollmentForm.get('studentId')?.hasError('required') && createEnrollmentForm.get('studentId')?.touched"
+                                    class="text-danger">
+                                    Student is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="courseId" class="form-label">Course</label>
+                                <select class="form-select rounded-pill" id="courseId" formControlName="courseId">
+                                    <option value="">Select Course</option>
+                                    <option *ngFor="let course of courses" [value]="course.id">{{course.title}}</option>
+                                </select>
+                                <div
+                                    *ngIf="createEnrollmentForm.get('courseId')?.hasError('required') && createEnrollmentForm.get('courseId')?.touched"
+                                    class="text-danger">
+                                    Course is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="enrollmentDate" class="form-label">Enrollment Date</label>
+                                <input type="date" class="form-control rounded-pill" id="enrollmentDate" formControlName="enrollmentDate">
+                                <div
+                                    *ngIf="createEnrollmentForm.get('enrollmentDate')?.hasError('required') && createEnrollmentForm.get('enrollmentDate')?.touched"
+                                    class="text-danger">
+                                    Enrollment Date is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="completionDate" class="form-label">Completion Date</label>
+                                <input type="date" class="form-control rounded-pill" id="completionDate" formControlName="completionDate">
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="grade" class="form-label">Grade</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Grade" id="grade" formControlName="grade">
+                            </div>
+
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="d-flex flex-wrap gap-2 searhbtn">
+                                    <button type="button" (click)="createEnrollment()" [disabled]="createEnrollmentForm.invalid" class="btn btn-primary waves-effect waves-light">
+                                        Create
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,55 @@
+<form [formGroup]="createOrgForm">
+    <div class="row">
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="orgName" class="form-label">Organization Name</label>
+            <input type="text" class="form-control rounded-pill" placeholder="Enter Organization Name" id="orgName" formControlName="name">
+            <div *ngIf="createOrgForm.get('name')?.hasError('required') && createOrgForm.get('name')?.touched" class="text-danger">
+                Organization Name is required.
+            </div>
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control rounded-pill" id="description" placeholder="Enter Description" formControlName="description"></textarea>
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="street" class="form-label">Street</label>
+            <input type="text" class="form-control rounded-pill" placeholder="Enter Street" id="street" formControlName="street">
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control rounded-pill" placeholder="Enter City" id="city" formControlName="city">
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="state" class="form-label">State</label>
+            <input type="text" class="form-control rounded-pill" placeholder="Enter State" id="state" formControlName="state">
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control rounded-pill" placeholder="Enter Country" id="country" formControlName="country">
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="postalCode" class="form-label">Postal Code</label>
+            <input type="text" class="form-control rounded-pill" placeholder="Enter Postal Code" id="postalCode" formControlName="postalCode">
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="foundingDate" class="form-label">Founding Date</label>
+            <input type="date" class="form-control rounded-pill" id="foundingDate" formControlName="foundingDate">
+            <div *ngIf="createOrgForm.get('foundingDate')?.hasError('required') && createOrgForm.get('foundingDate')?.touched" class="text-danger">
+                Founding Date is required.
+            </div>
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="industry" class="form-label">Industry</label>
+            <input type="text" class="form-control rounded-pill" placeholder="Enter Industry" id="industry" formControlName="industry">
+        </div>
+        <div class="col-xxl-4 col-md-4 mb-3">
+            <label for="website" class="form-label">Website</label>
+            <input type="url" class="form-control rounded-pill" placeholder="Enter Website URL" id="website" formControlName="website">
+        </div>
+        <div class="col-xxl-12 col-md-12">
+            <div class="d-flex flex-wrap gap-2">
+                <button type="button" (click)="createOrg()" [disabled]="createOrgForm.invalid" class="btn btn-primary waves-effect waves-light">Create</button>
+            </div>
+        </div>
+    </div>
+</form>

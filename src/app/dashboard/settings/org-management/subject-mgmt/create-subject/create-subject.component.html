@@ -1,0 +1,74 @@
+<div class="row">
+  <form [formGroup]="createSubjectForm">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header align-items-center d-flex">
+          <h4 class="card-title mb-0 flex-grow-1">Create Subject</h4>
+        </div>
+        <div class="card-body">
+          <div class="live-preview">
+            <div class="row">
+              <div class="col-xxl-4 col-md-4 mb-3">
+                <label for="departmentId" class="form-label">Organization</label>
+                <select class="form-select rounded-pill mb-3" id="orgId" (change)="getDepts($event);getCourses($event);" formControlName="orgId">
+                  <option value="">Select Organization</option>
+                  <option *ngFor="let org of orgs" [value]="org.id">{{ org.name }}</option>
+                </select>
+                <div
+                  *ngIf="createSubjectForm.get('orgId')?.hasError('required') && createSubjectForm.get('orgId')?.touched"
+                  class="text-danger">
+                  Organization is required.
+                </div>
+              </div>
+              <div class="col-xxl-4 col-md-4 mb-3">
+                <label for="departmentId" class="form-label">Department</label>
+                <select class="form-select rounded-pill mb-3" id="departmentId" formControlName="departmentId">
+                  <option value="">Select Department</option>
+                  <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+                </select>
+                <div
+                  *ngIf="createSubjectForm.get('departmentId')?.hasError('required') && createSubjectForm.get('departmentId')?.touched"
+                  class="text-danger">
+                  Department is required.
+                </div>
+              </div>
+
+                <div class="col-xxl-4 col-md-4 mb-3">
+                <label for="courseId" class="form-label">Course</label>
+                <select class="form-select rounded-pill mb-3" id="courseId" formControlName="courseId">
+                  <option value="">Select Course</option>
+                  <option *ngFor="let course of courses" [value]="course.id">{{ course.title }}</option>
+                </select>
+                <div
+                  *ngIf="createSubjectForm.get('courseId')?.hasError('required') && createSubjectForm.get('courseId')?.touched"
+                  class="text-danger">
+                  Course is required.
+                </div>
+              </div>
+
+               <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="txtSubject" class="form-label">Subject</label>
+                  <input type="text" class="form-control rounded-pill" placeholder="Enter Subject" id="txtSubject" formControlName="name">
+                  <div
+                    *ngIf="createSubjectForm.get('name')?.hasError('required') && createSubjectForm.get('name')?.touched"
+                    class="text-danger">
+                    Subject is required.
+                  </div>
+                </div>
+
+              <div class="col-xxl-12 col-md-12">
+                <div class="d-flex flex-wrap gap-2 searhbtn">
+                  <button type="button" (click)="createStudent()" [disabled]="createSubjectForm.invalid"
+                    class="btn btn-primary waves-effect waves-light">
+                    Create
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

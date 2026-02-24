@@ -1,0 +1,71 @@
+<div class="row">
+    <form [formGroup]="createEntityForm">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Create Organization Department</h4>
+                </div>
+                <div class="card-body">
+                    <div class="live-preview">
+                        <div class="row">
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Name" id="name"
+                                    formControlName="name">
+                                <div
+                                    *ngIf="createEntityForm.get('name')?.hasError('required') && createEntityForm.get('name')?.touched"
+                                    class="text-danger">
+                                    Name is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="code" class="form-label">Code</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Code" id="code"
+                                    formControlName="code">
+                                <div
+                                    *ngIf="createEntityForm.get('code')?.hasError('required') && createEntityForm.get('code')?.touched"
+                                    class="text-danger">
+                                    Code is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Description"
+                                    id="description" formControlName="description">
+                                <div
+                                    *ngIf="createEntityForm.get('description')?.hasError('required') && createEntityForm.get('description')?.touched"
+                                    class="text-danger">
+                                    Description is required.
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="organizationId" class="form-label">Organization</label>
+                                    <select class="form-select rounded-pill mb-3" aria-label="Default select example"
+                                        id="organizationId" formControlName="organizationId">
+                                        <option value="">Select Organization</option>
+                                        <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+                                    </select>
+                                    <div
+                                        *ngIf="createEntityForm.get('organizationId')?.hasError('required') && createEntityForm.get('organizationId')?.touched"  class="text-danger">
+                                        Organization is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="d-flex flex-wrap gap-2 searhbtn">
+                                    <button type="button" (click)="createEntity()" [disabled]="createEntityForm.invalid"
+                                        class="btn btn-primary waves-effect waves-light">Create</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

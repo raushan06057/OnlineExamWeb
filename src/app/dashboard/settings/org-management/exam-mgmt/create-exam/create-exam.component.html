@@ -1,0 +1,161 @@
+<div class="row">
+    <form [formGroup]="createExamForm">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Create Exam</h4>
+                </div>
+                <div class="card-body">
+                    <div class="live-preview">
+                        <div class="row">
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Title" id="title"
+                                    formControlName="title">
+                                <div
+                                    *ngIf="createExamForm.get('title')?.hasError('required') && createExamForm.get('title')?.touched"
+                                    class="text-danger">
+                                    Title is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Description"
+                                    id="description" formControlName="description">
+                                <div
+                                    *ngIf="createExamForm.get('description')?.hasError('required') && createExamForm.get('description')?.touched"
+                                    class="text-danger">
+                                    Description is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control rounded-pill" id="startDate"
+                                    formControlName="startDate">
+                                <div
+                                    *ngIf="createExamForm.get('startDate')?.hasError('required') && createExamForm.get('startDate')?.touched"
+                                    class="text-danger">
+                                    Start Date is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control rounded-pill" id="endDate"
+                                    formControlName="endDate">
+                                <div
+                                    *ngIf="createExamForm.get('endDate')?.hasError('required') && createExamForm.get('endDate')?.touched"
+                                    class="text-danger">
+                                    End Date is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="durationInMinutes" class="form-label">Duration (Minutes)</label>
+                                <input type="number" class="form-control rounded-pill" placeholder="Enter Duration" id="durationInMinutes"
+                                    formControlName="durationInMinutes">
+                                <div
+                                    *ngIf="createExamForm.get('durationInMinutes')?.hasError('required') && createExamForm.get('durationInMinutes')?.touched"
+                                    class="text-danger">
+                                    Duration is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="organizationId" class="form-label">Organization</label>
+                                <select class="form-select rounded-pill mb-3" id="organizationId" (change)="getCourses($event);getDepts($event)"
+                                    formControlName="organizationId">
+                                    <option value="">Select Organization</option>
+                                    <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="createExamForm.get('organizationId')?.hasError('required') && createExamForm.get('organizationId')?.touched"
+                                    class="text-danger">
+                                    Organization is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="departmentId" class="form-label">Department</label>
+                                <select class="form-select rounded-pill mb-3" id="departmentId"
+                                    formControlName="departmentId">
+                                    <option value="">Select Department</option>
+                                    <option *ngFor="let dept of departments" [value]="dept.id">{{dept.name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="createExamForm.get('departmentId')?.hasError('required') && createExamForm.get('departmentId')?.touched"
+                                    class="text-danger">
+                                    Department is required.
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="courseId" class="form-label">Course</label>
+                                <select class="form-select rounded-pill mb-3" id="courseId"
+                                    formControlName="courseId" (change)="getSubjects($event)">
+                                    <option value="">Select Course</option>
+                                    <option *ngFor="let course of courses" [value]="course.id">{{course.title}}</option>
+                                </select>
+                                <div
+                                    *ngIf="createExamForm.get('courseId')?.hasError('required') && createExamForm.get('courseId')?.touched"
+                                    class="text-danger">
+                                    Course is required.
+                                </div>
+                            </div>
+                             <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="subjectId" class="form-label">Subject</label>
+                                <select class="form-select rounded-pill mb-3" id="subjectId"
+                                    formControlName="subjectId">
+                                    <option value="">Select Subject</option>
+                                    <option *ngFor="let subject of subjects" [value]="subject.id">{{subject.name}}</option>
+                                </select>
+                                <div
+                                    *ngIf="createExamForm.get('subjectId')?.hasError('required') && createExamForm.get('subjectId')?.touched"
+                                    class="text-danger">
+                                    Subject is required.
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="totalMarks" class="form-label">Total Marks</label>
+                                <input type="number" class="form-control rounded-pill" placeholder="Enter Total Marks" id="totalMarks"
+                                    formControlName="totalMarks">
+                                <div
+                                    *ngIf="createExamForm.get('totalMarks')?.hasError('required') && createExamForm.get('totalMarks')?.touched"
+                                    class="text-danger">
+                                    Total Marks are required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="passingMarks" class="form-label">Passing Marks</label>
+                                <input type="number" class="form-control rounded-pill" placeholder="Enter Passing Marks" id="passingMarks"
+                                    formControlName="passingMarks">
+                                <div
+                                    *ngIf="createExamForm.get('passingMarks')?.hasError('required') && createExamForm.get('passingMarks')?.touched"
+                                    class="text-danger">
+                                    Passing Marks are required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="isScheduled" class="form-label">Is Scheduled</label>
+                                <input type="checkbox" class="form-check-input" id="isScheduled"
+                                    formControlName="isScheduled">
+                            </div>
+
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="d-flex flex-wrap gap-2 searhbtn">
+                                    <button type="button" (click)="createExam()" [disabled]="createExamForm.invalid"
+                                        class="btn btn-primary waves-effect waves-light">Create</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

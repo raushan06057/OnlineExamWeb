@@ -1,0 +1,144 @@
+<div id="layout-wrapper">
+
+    <app-ongoing-exam-header></app-ongoing-exam-header>
+    <app-ongoing-exam-left-menu></app-ongoing-exam-left-menu>
+    <div class="left-space-17 pt-5">
+        <div class="row">
+            <form [formGroup]="createQuestionForm">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center gap-2">
+                            <h4 class="card-title mb-0 flex-grow-1"> <label for="examId" class="form-label">Exam</label>
+                                <select class="form-select rounded-pill mb-3" formControlName="examId" readonly>
+                                    <option value="">Select Exam</option>
+                                    <option *ngFor="let exam of exams" [value]="exam.id">{{ exam.title }}
+                                    </option>
+                                </select>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="live-preview">
+                                <div class="row">
+                                    <div class="col-xxl-10 col-md-10 mb-9">
+                                        <label for="questionText" class="form-label">Question</label>
+                                        <input type="hidden" formControlName="id" value="">
+                                        <input type="text" class="form-control rounded-pill"
+                                            placeholder="Enter Question Text" id="questionText" formControlName="text"
+                                            readonly>
+                                        <div *ngIf="createQuestionForm.get('text')?.hasError('required') && createQuestionForm.get('text')?.touched"
+                                            class="text-danger">
+                                            Question text is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-2 col-md-2 mb-2">
+                                        <label for="questionText" class="form-label">Marks</label>
+                                        <input type="text" class="form-control rounded-pill" placeholder="Enter Marks"
+                                            readonly id="questionMarks" formControlName="marks">
+                                        <div *ngIf="createQuestionForm.get('marks')?.hasError('required') && createQuestionForm.get('marks')?.touched"
+                                            class="text-danger">
+                                            Marks is required.
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- <div class="col-xxl-4 col-md-4 mb-3">
+                                         <label for="examId" class="form-label">Exam</label>
+                                        <select class="form-select rounded-pill mb-3" formControlName="examId">
+                                            <option value="">Select Exam</option>
+                                            <option *ngFor="let exam of exams" [value]="exam.id">{{ exam.title }}
+                                            </option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-xxl-4 col-md-4 mb-3">
+                                        <label for="questionType" class="form-label">Question Type</label>
+
+                                        <select class="form-select rounded-pill mb-3" id="questionType"
+                                            formControlName="type" (change)="selectionChange($event)">
+                                            <option value="">Select Type</option>
+                                            <option value="1">Multiple Choice</option>
+                                            <option value="2">Essay</option>
+                                            <option value="3">True/False</option>
+                                            <option value="4">Fill in the Blank</option>
+                                        </select>
+                                        <div *ngIf="createQuestionForm.get('type')?.hasError('required') && createQuestionForm.get('type')?.touched"
+                                            class="text-danger">
+                                            Question type is required.
+                                        </div>
+                                    </div>
+                                    <br /> -->
+                                    <div class="col-xxl-4 col-md-4 mb-3">
+                                        <div formArrayName="answerOptions">
+                                            <!-- <div *ngIf="answerOptions.controls.length>0">
+                                                <button class="btn btn-primary" (click)="addItem()"> <i
+                                                        class="fa fa-plus"></i></button>
+                                            </div> -->
+                                            <div *ngFor="let item of answerOptions.controls; let i = index"
+                                                [formGroupName]="i"
+                                                class="col-xxl-12 col-md-12 mb-3 d-flex align-items-center">
+                                                <div [ngSwitch]="questType">
+                                                    <div *ngSwitchCase="1" class="d-flex align-items-center gap-2">
+                                                        <input type="checkbox" formControlName="isCorrect"
+                                                            name="isCorrect" (click)="onIsCorrectChange($event)" />
+                                                        <!-- <label for="questionText"
+                                                            class="form-label me-2">{{i+1}}.</label> -->
+                                                        <input type="hidden" formControlName="id" />
+                                                        <input formControlName="text" placeholder="Enter value" readonly
+                                                            class="form-control rounded-pill me-2" />
+                                                    </div>
+                                                    <div *ngSwitchCase="3" class="d-flex align-items-center gap-2">
+                                                        <input type="radio" formControlName="isCorrect" name="isCorrect"
+                                                            (click)="onChange(i)" />
+                                                        <!-- <label for="questionText"
+                                                            class="form-label me-2">{{i+1}}.</label>-->
+                                                        <input type="hidden" formControlName="id" />
+                                                        <input formControlName="text" placeholder="Enter value" readonly
+                                                            class="form-control rounded-pill me-2" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- <input type="checkbox" formControlName="isCorrect"
+                                                    class="form-check-input me-2" /> -->
+                                                <!-- <button class="btn btn-primary" (click)="removeItem(i)">
+                                                    <i class="fa fa-minus"></i>
+                                                </button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xxl-12 col-md-12">
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <button type="button" (click)="previousQuest()"
+                                                class="btn btn-primary waves-effect waves-light">
+                                                Previous
+                                            </button>
+                                            <button type="button" (click)="nextQuest()"
+                                                class="btn btn-primary waves-effect waves-light">
+                                                Next
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xxl-12 col-md-12">
+                                        <div class="d-flex flex-wrap gap-2 searhbtn">
+                                            <button type="button" (click)="createQuestion()"
+                                                [disabled]="createQuestionForm.invalid"
+                                                class="btn btn-primary waves-effect waves-light">
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <app-stu-footer></app-stu-footer>
+    </div>
+</div>

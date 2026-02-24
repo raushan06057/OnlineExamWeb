@@ -1,0 +1,75 @@
+    
+    <div class="hold-transition login-page" style="background-image: url('assets/images/pageBack.jpg'); background-size: cover; background-repeat: no-repeat" data-new-gr-c-s-check-loaded="14.1131.0" data-gr-ext-installed="">
+
+    
+        <!-- auth-page wrapper -->
+        <div class="py-5 justify-content-center align-items-center min-vh-100">
+            
+            <!-- auth-page content -->
+            <div class="auth-page-content overflow-hidden">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 offset-lg-4">
+                            <div class="card overflow-hidden">
+                                  
+    
+                                    <div class="col-lg-12">
+                                        <div class="p-lg-5 p-4">
+                                            <div>
+                                                <h5 class="text-primary">Welcome to SEMS</h5>
+                                            </div>
+    
+                                            <div class="mt-4">
+                                                <form  [formGroup]="userLoginForm">
+    
+                                                    <div class="mb-3">
+                                                        <label for="username" class="form-label">Username</label>
+                                                        <input type="text" class="form-control" id="username" placeholder="Enter username" formControlName="username">
+                                                    </div>
+    
+                                                    <div class="mb-3">
+                                                        <div class="float-end">
+                                                            <a href="#" class="text-muted">Forgot password?</a>
+                                                        </div>
+                                                        <label class="form-label" for="password-input">Password</label>
+                                                        <div class="position-relative auth-pass-inputgroup mb-3">
+                                                            <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input" formControlName="password">
+                                                            <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="auth-remember-check" formControlName="rememberLogin">
+                                                        <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                                    </div>
+    {{message}}
+                                                    <div class="mt-4">
+                                                       <a (click)="signIn()"> <button class="btn btn-success w-100" type="submit">Sign In</button></a>
+                                                    </div>
+    
+                                                </form>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                    <!-- end col -->
+                             
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+    
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </div>
+            <!-- end auth page content -->
+    
+          
+        </div>
+        <!-- end auth-page-wrapper -->
+    
+    
+    </div>
+    <!-- end auth-page-wrapper -->

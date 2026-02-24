@@ -1,0 +1,7 @@
+{
+  "name": "OnlineExamWeb",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

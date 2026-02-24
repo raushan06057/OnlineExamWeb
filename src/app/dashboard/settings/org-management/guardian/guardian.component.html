@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1">Search </h4>
+
+            </div><!-- end card header -->
+            <div class="card-body">
+                <div class="live-preview">
+                    <div class="row">
+                        <form [formGroup]="guardianForm">
+                        <div class="col-xxl-6 col-md-4">
+                            <label for="exampleInputrounded" class="form-label">Mobile</label>
+                            <input type="text" class="form-control rounded-pill" placeholder="Enter Organization" formControlName="mobile">
+                        </div>
+                        <div class="col-xxl-12 col-md-2">
+                            <div class="d-flex flex-wrap searhbtn">
+                                <button type="button" (click)="searchGuardians()"
+                                    class="btn btn-primary me-2 waves-effect waves-light mb-2">Search</button>
+                                <button type="button"
+                                    class="btn btn-info me-2 waves-effect waves-light mb-2">Export</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- .col-->
+
+
+</div> <!-- end row-->
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card tablegird">
+            <div class="card-header">
+                <h4 class="card-title mb-0 flex-grow-1">Guardians</h4>
+                <button type="button" class="btn btn-info btnright waves-effect waves-light"
+                    (click)="create()">Create</button>
+            </div>
+            <!-- end card header -->
+            <div class="card-body">
+                <div id="table-gridjs">
+                    <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+
+                        <div class="gridjs-wrapper" style="height: auto;">
+                            <table role="grid" class="gridjs-table" style="height: auto;">
+                                <thead class="gridjs-thead">
+                                    <tr class="gridjs-tr">
+
+                                        <th data-column-id="email" class="gridjs-th gridjs-th-sort" tabindex="0">
+                                            <div class="gridjs-th-content">First Name</div>
+                                        </th>
+                                        <th data-column-id="email" class="gridjs-th gridjs-th-sort" tabindex="0">
+                                            <div class="gridjs-th-content">Last Name</div>
+                                        </th>
+                                        <th data-column-id="email" class="gridjs-th gridjs-th-sort" tabindex="0">
+                                            <div class="gridjs-th-content">Mobile</div>
+                                        </th>
+                                      
+                                        <th data-column-id="email" class="gridjs-th gridjs-th-sort" tabindex="0">
+                                            <div class="gridjs-th-content">Action</div>
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="gridjs-tbody">
+                                    <tr class="gridjs-tr" *ngFor="let org of guardians">
+                                        <td data-column-id="name" class="gridjs-td">{{org.firstName}}</td>
+                                        <td data-column-id="name" class="gridjs-td">{{org.lastName}}</td>
+                                        <td data-column-id="name" class="gridjs-td">{{org.phoneNumber}}</td>
+                                        <td data-column-id="email" class="gridjs-td">
+                                            <button type="button"
+                                                class="btn btn-primary me-2 btn-sm btn-icon waves-effect waves-light"
+                                                (click)="edit(org.id)" fdprocessedid="a32kx7"><i
+                                                    class="mdi mdi-pencil"></i></button>
+                                            <button type="button" (click)="deleteOrg(org.id,org.firstName)"
+                                                class="btn btn-danger btn-icon btn-sm waves-effect waves-light"
+                                                fdprocessedid="a32kx7"><i class="ri-delete-bin-5-line"></i></button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="gridjs-footer">
+                            <div class="gridjs-pagination">
+                                <!-- <div role="status" aria-live="polite" class="gridjs-summary mb-2" title="Page 1 of 2">
+                                    Showing <b>1</b> to <b>5</b> of <b>10</b> results</div> -->
+
+                                <div class="gridjs-pages">
+                                    <!-- <pagination-controls class="paginator" previousLabel="Prev" nextLabel="Next"
+                                    (pageChange)="onChange($event)"></pagination-controls> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end card-body -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->

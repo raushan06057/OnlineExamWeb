@@ -1,0 +1,134 @@
+<div class="row">
+    <form [formGroup]="createUserForm">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Edit User</h4>
+                </div><!-- end card header -->
+                <div class="card-body">
+                    <div class="live-preview">
+                        <div class="row">
+                            <!-- <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="userID" class="form-label">User
+                                        Id</label>
+                                    <input type="text" class="form-control rounded-pill" id="userID"
+                                        placeholder="Enter User Id" formControlName="userID">
+                                    <div
+                                        *ngIf="createUserForm.get('userID')?.hasError('required') && createUserForm.get('userID')?.touched">
+                                        User Id is required.
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="userName" class="form-label">User
+                                    Name</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter User Name"
+                                    id="userName" formControlName="userName">
+                                <div
+                                    *ngIf="createUserForm.get('userName')?.hasError('required') && createUserForm.get('userName')?.touched"  class="text-danger">
+                                    User Name is required.
+                                </div>
+                            </div>
+                            <!-- <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="userType" class="form-label">User
+                                    Type</label>
+                                <select class="form-select rounded-pill mb-3" aria-label="Default select example"
+                                    id="userType" formControlName="userType">
+                                    <option value="">Select User Type</option>
+                                    <option *ngFor="let userType of userTypes" [value]="userType.userTypeCode">
+                                        {{userType.userTypeName}}</option>
+                                </select>
+                                <div
+                                    *ngIf="createUserForm.get('userType')?.hasError('required') && createUserForm.get('userType')?.touched">
+                                    User Type is required.
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control rounded-pill" formControlName="password"
+                                        id="password" placeholder="Enter Password">
+                                    <div
+                                        *ngIf="createUserForm.get('password')?.hasError('required') && createUserForm.get('password')?.touched"  class="text-danger">
+                                        Password is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="confirmPassword" class="form-label">Confirm
+                                        Password</label>
+                                    <input type="password" class="form-control rounded-pill" id="confirmPassword"
+                                        formControlName="confirmPassword" placeholder="Enter Confirm Password">
+                                    <div
+                                        *ngIf="createUserForm.get('confirmPassword')?.hasError('required') && createUserForm.get('confirmPassword')?.touched"  class="text-danger">
+                                        Confirm Password is required.
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="role" class="form-label">Role</label>
+                                    <select class="form-select rounded-pill mb-3" aria-label="Default select example"
+                                        id="role" formControlName="role">
+                                        <option value="">Select Role</option>
+                                        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                                    </select>
+                                    <div
+                                        *ngIf="createUserForm.get('role')?.hasError('required') && createUserForm.get('role')?.touched"  class="text-danger">
+                                        Role is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="email" class="form-label">Email-ID</label>
+                                    <input type="text" class="form-control rounded-pill" placeholder="Enter Email Id"
+                                        id="email" formControlName="email">
+                                    <div
+                                        *ngIf="createUserForm.get('email')?.hasError('required') && createUserForm.get('email')?.touched"  class="text-danger">
+                                        Email-ID is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="mobileNo" class="form-label">Mobile
+                                        No</label>
+                                    <input type="text" class="form-control rounded-pill" placeholder="Enter Mobile No"
+                                        id="mobileNo" formControlName="mobileNo">
+                                   
+                                    <div *ngIf="createUserForm.get('mobileNo')?.invalid && (createUserForm.get('mobileNo')?.dirty || createUserForm.get('mobileNo')?.touched)" class="text-danger">
+                                        <div *ngIf="createUserForm.get('mobileNo')?.errors?.['required']">Mobile number is required.</div>
+                                        <div *ngIf="createUserForm.get('mobileNo')?.errors?.['invalidMobile']">Please enter a valid 10-digit mobile number.</div>
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="department" class="form-label">Department</label>
+                                    <select class="form-select rounded-pill mb-3" aria-label="Default select example"
+                                        id="department" formControlName="department">
+                                        <option value="">Select Department</option>
+                                        <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
+                                    </select>
+                                    <div
+                                        *ngIf="createUserForm.get('department')?.hasError('required') && createUserForm.get('department')?.touched"  class="text-danger">
+                                        Department is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="d-flex flex-wrap gap-2  searhbtn">
+                                    <button type="button" (click)="createUser()" [disabled]="createUserForm.invalid"
+                                        class="btn btn-primary waves-effect waves-light">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- .col-->
+        </div> <!-- end row-->
+    </form>

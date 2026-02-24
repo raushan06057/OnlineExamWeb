@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header align-items-center d-flex">
+          <h4 class="card-title mb-0 flex-grow-1">Search</h4>
+        </div><!-- end card header -->
+        <div class="card-body">
+          <div class="live-preview">
+            <div class="row">
+              <form [formGroup]="questionForm">
+                <div class="col-xxl-6 col-md-4">
+                  <label for="exampleInputrounded" class="form-label">Question Text</label>
+                  <input type="text" class="form-control rounded-pill" placeholder="Enter Question Text" formControlName="text" />
+                </div>
+                <div class="col-xxl-6 col-md-4">
+                  <label for="exampleInputrounded" class="form-label">Question Type</label>
+                  <select class="form-select rounded-pill" formControlName="type">
+                    <option value="1">Multiple Choice</option>
+                    <option value="2">Essay</option>
+                    <option value="3">True/False</option>
+                    <option value="4">Fill in the Blank</option>
+                  </select>
+                </div>
+                <div class="col-xxl-6 col-md-4">
+                  <label for="exampleInputrounded" class="form-label">Exam ID</label>
+                  <input type="number" class="form-control rounded-pill" placeholder="Enter Exam ID" formControlName="examId" />
+                </div>
+                <div class="col-xxl-12 col-md-2">
+                  <div class="d-flex flex-wrap searhbtn">
+                    <button type="button" (click)="searchQuestion()" class="btn btn-primary me-2 waves-effect waves-light mb-2">Search</button>
+                    <button type="button" class="btn btn-info me-2 waves-effect waves-light mb-2">Export</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .col-->
+  </div> <!-- end row-->
+  
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card tablegird">
+        <div class="card-header">
+          <h4 class="card-title mb-0 flex-grow-1">Questions</h4>
+          <button type="button" class="btn btn-info btnright waves-effect waves-light" (click)="createQuestion()">Create</button>
+        </div>
+        <!-- end card header -->
+        <div class="card-body">
+          <div id="table-gridjs">
+            <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+              <div class="gridjs-wrapper" style="height: auto;">
+                <table role="grid" class="gridjs-table" style="height: auto;">
+                  <thead class="gridjs-thead">
+                    <tr class="gridjs-tr">
+                      <th class="gridjs-th gridjs-th-sort" tabindex="0">
+                        <div class="gridjs-th-content">Text</div>
+                      </th>
+                      <th class="gridjs-th gridjs-th-sort" tabindex="0">
+                        <div class="gridjs-th-content">Type</div>
+                      </th>
+                      <th class="gridjs-th gridjs-th-sort" tabindex="0">
+                        <div class="gridjs-th-content">Exam</div>
+                      </th>
+                        <th class="gridjs-th gridjs-th-sort" tabindex="0">
+                        <div class="gridjs-th-content">Organization</div>
+                      </th>
+                      <th class="gridjs-th gridjs-th-sort" tabindex="0">
+                        <div class="gridjs-th-content">Action</div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="gridjs-tbody">
+                    <tr class="gridjs-tr" *ngFor="let question of questionModels">
+                      <td class="gridjs-td">{{question.text}}</td>
+                      <td class="gridjs-td">{{question.typeName}}</td>
+                      <td class="gridjs-td">{{question.examName}}</td>
+                      <td class="gridjs-td">{{question.orgName}}</td>
+                      <td class="gridjs-td">
+                        <button type="button" class="btn btn-primary btn-sm btn-icon waves-effect waves-light" (click)="editQuestion(question.id)">
+                          <i class="mdi mdi-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm btn-icon waves-effect waves-light" (click)="deleteQuestion(question.id, question.text)">
+                          <i class="ri-delete-bin-5-line"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end card-body -->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col -->
+  </div>
+  

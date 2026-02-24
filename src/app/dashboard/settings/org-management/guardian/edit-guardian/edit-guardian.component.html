@@ -1,0 +1,138 @@
+<div class="row">
+    <form [formGroup]="createGuardianForm">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Edit Guardian</h4>
+          </div>
+          <div class="card-body">
+            <div class="live-preview">
+              <div class="row">
+   <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="organizationId" class="form-label">Organization</label>
+                  <select class="form-select rounded-pill mb-3" id="organizationId" formControlName="organizationId">
+                    <option value="">Select Organization</option>
+                    <option *ngFor="let org of orgs" [value]="org.id">{{ org.name }}</option>
+                  </select>
+                  <div
+                    *ngIf="createGuardianForm.get('departmentId')?.hasError('required') && createGuardianForm.get('departmentId')?.touched"
+                    class="text-danger">
+                    Organization is required.
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Enter First Name"
+                    id="firstName"
+                    formControlName="firstName"
+                  />
+                  <div
+                    *ngIf="createGuardianForm.get('firstName')?.hasError('required') && createGuardianForm.get('firstName')?.touched"
+                    class="text-danger">
+                    First Name is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Enter Last Name"
+                    id="lastName"
+                    formControlName="lastName"
+                  />
+                  <div
+                    *ngIf="createGuardianForm.get('lastName')?.hasError('required') && createGuardianForm.get('lastName')?.touched"
+                    class="text-danger">
+                    Last Name is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="middleName" class="form-label">Middle Name</label>
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Enter Middle Name"
+                    id="middleName"
+                    formControlName="middleName"
+                  />
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                  <input
+                    type="date"
+                    class="form-control rounded-pill"
+                    id="dateOfBirth"
+                    formControlName="dateOfBirth"
+                  />
+                  <div
+                    *ngIf="createGuardianForm.get('dateOfBirth')?.hasError('required') && createGuardianForm.get('dateOfBirth')?.touched"
+                    class="text-danger">
+                    Date of Birth is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="emailAddress" class="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    class="form-control rounded-pill"
+                    placeholder="Enter Email Address"
+                    id="emailAddress"
+                    formControlName="emailAddress"
+                  />
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="phoneNumber" class="form-label">Phone Number</label>
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Enter Phone Number"
+                    id="phoneNumber"
+                    formControlName="phoneNumber"
+                  />
+                  <div
+                    *ngIf="createGuardianForm.get('phoneNumber')?.hasError('required') && createGuardianForm.get('phoneNumber')?.touched"
+                    class="text-danger">
+                    Phone Number is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="relationship" class="form-label">Relationship</label>
+                  <input
+                    type="text"
+                    class="form-control rounded-pill"
+                    placeholder="Enter Relationship"
+                    id="relationship"
+                    formControlName="relationship"
+                  />
+                </div>
+  
+                <div class="col-xxl-12 col-md-12">
+                  <div class="d-flex flex-wrap gap-2 searhbtn">
+                    <button
+                      type="button"
+                      (click)="createGuardian()"
+                      [disabled]="createGuardianForm.invalid"
+                      class="btn btn-primary waves-effect waves-light">
+                      Update
+                    </button>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

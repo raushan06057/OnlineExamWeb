@@ -1,0 +1,115 @@
+<div class="row">
+    <form [formGroup]="createStudentForm">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-header align-items-center d-flex">
+            <h4 class="card-title mb-0 flex-grow-1">Create Student</h4>
+          </div>
+          <div class="card-body">
+            <div class="live-preview">
+              <div class="row">
+   <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="organizationId" class="form-label">Organization</label>
+                  <select class="form-select rounded-pill mb-3" id="organizationId" formControlName="organizationId"
+                  (change)="changeOrg($event)">
+                    <option value="">Select Organization</option>
+                    <option *ngFor="let org of orgs" [value]="org.id">{{ org.name }}</option>
+                  </select>
+                  <div
+                    *ngIf="createStudentForm.get('departmentId')?.hasError('required') && createStudentForm.get('departmentId')?.touched"
+                    class="text-danger">
+                    Organization is required.
+                  </div>
+                </div>
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control rounded-pill" placeholder="Enter First Name" id="firstName" formControlName="firstName">
+                  <div
+                    *ngIf="createStudentForm.get('firstName')?.hasError('required') && createStudentForm.get('firstName')?.touched"
+                    class="text-danger">
+                    First Name is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control rounded-pill" placeholder="Enter Last Name" id="lastName" formControlName="lastName">
+                  <div
+                    *ngIf="createStudentForm.get('lastName')?.hasError('required') && createStudentForm.get('lastName')?.touched"
+                    class="text-danger">
+                    Last Name is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="middleName" class="form-label">Middle Name</label>
+                  <input type="text" class="form-control rounded-pill" placeholder="Enter Middle Name" id="middleName" formControlName="middleName">
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                  <input type="date" class="form-control rounded-pill" id="dateOfBirth" formControlName="dateOfBirth">
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="emailAddress" class="form-label">Email Address</label>
+                  <input type="email" class="form-control rounded-pill" placeholder="Enter Email Address" id="emailAddress" formControlName="emailAddress">
+                  <div
+                    *ngIf="createStudentForm.get('emailAddress')?.hasError('required') && createStudentForm.get('emailAddress')?.touched"
+                    class="text-danger">
+                    Email Address is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="phoneNumber" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control rounded-pill" placeholder="Enter Phone Number" id="phoneNumber" formControlName="phoneNumber">
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="address" class="form-label">Address</label>
+                  <input type="text" class="form-control rounded-pill" placeholder="Enter Address" id="address" formControlName="address">
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="departmentId" class="form-label">Department</label>
+                  <select class="form-select rounded-pill mb-3" id="departmentId" formControlName="departmentId">
+                    <option value="">Select Department</option>
+                    <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+                  </select>
+                  <div
+                    *ngIf="createStudentForm.get('departmentId')?.hasError('required') && createStudentForm.get('departmentId')?.touched"
+                    class="text-danger">
+                    Department is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-4 col-md-4 mb-3">
+                  <label for="guardianId" class="form-label">Guardian</label>
+                  <select class="form-select rounded-pill mb-3" id="guardianId" formControlName="guardianId">
+                    <option value="">Select Guardian</option>
+                    <option *ngFor="let guardian of guardians" [value]="guardian.id">{{ guardian.firstName }}</option>
+                  </select>
+                  <div
+                    *ngIf="createStudentForm.get('guardianId')?.hasError('required') && createStudentForm.get('guardianId')?.touched"
+                    class="text-danger">
+                    Guardian is required.
+                  </div>
+                </div>
+  
+                <div class="col-xxl-12 col-md-12">
+                  <div class="d-flex flex-wrap gap-2 searhbtn">
+                    <button type="button" (click)="createStudent()" [disabled]="createStudentForm.invalid" class="btn btn-primary waves-effect waves-light">
+                      Create
+                    </button>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

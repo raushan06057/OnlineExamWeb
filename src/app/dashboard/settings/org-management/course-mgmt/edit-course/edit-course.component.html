@@ -1,0 +1,73 @@
+<div class="row">
+    <form [formGroup]="createCourseForm">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Edit Course</h4>
+                </div>
+                <div class="card-body">
+                    <div class="live-preview">
+                        <div class="row">
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Title" id="title"
+                                    formControlName="title">
+                                <div
+                                    *ngIf="createCourseForm.get('title')?.hasError('required') && createCourseForm.get('title')?.touched"
+                                    class="text-danger">
+                                    Title is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <input type="text" class="form-control rounded-pill" placeholder="Enter Description"
+                                    id="description" formControlName="description">
+                                <div
+                                    *ngIf="createCourseForm.get('description')?.hasError('required') && createCourseForm.get('description')?.touched"
+                                    class="text-danger">
+                                    Description is required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <label for="credits" class="form-label">Credits</label>
+                                <input type="number" class="form-control rounded-pill" placeholder="Enter Credits" id="credits"
+                                    formControlName="credits">
+                                <div
+                                    *ngIf="createCourseForm.get('credits')?.hasError('required') && createCourseForm.get('credits')?.touched"
+                                    class="text-danger">
+                                    Credits are required.
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-4 col-md-4 mb-3">
+                                <div>
+                                    <label for="organizationId" class="form-label">Organization</label>
+                                    <select class="form-select rounded-pill mb-3" aria-label="Default select example"
+                                        id="organizationId" formControlName="organizationId">
+                                        <option value="">Select Organization</option>
+                                        <option *ngFor="let org of orgs" [value]="org.id">{{org.name}}</option>
+                                    </select>
+                                    <div
+                                        *ngIf="createCourseForm.get('organizationId')?.hasError('required') && createCourseForm.get('organizationId')?.touched" class="text-danger">
+                                        Organization is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-12 col-md-12">
+                                <div class="d-flex flex-wrap gap-2 searhbtn">
+                                    <button type="button" (click)="createCourse()" [disabled]="createCourseForm.invalid"
+                                        class="btn btn-primary waves-effect waves-light">Update</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { HRPage } from './hr.page';
+import { HRRoutingModule } from './hr-routing.module';
+
+@NgModule({
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        HRRoutingModule
+    ],
+    declarations: [HRPage]
+})
+export class HRModule { }
