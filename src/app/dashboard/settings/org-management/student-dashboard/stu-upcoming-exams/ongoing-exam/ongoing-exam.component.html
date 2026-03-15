@@ -7,19 +7,23 @@
             <form [formGroup]="createQuestionForm">
                 <div class="col-xl-12">
                     <div class="card">
-                        <div class="card-header d-flex align-items-center gap-2">
-                            <h4 class="card-title mb-0 flex-grow-1"> <label for="examId" class="form-label">Exam</label>
-                                <select class="form-select rounded-pill mb-3" formControlName="examId" readonly>
+                        <div class="card-header d-flex align-items-center gap-2 col-xxl-11 col-md-11 mb-10">
+                            <h4 class="card-title mb-0 flex-grow-1"> <label for="examId" class="form-label">Exam : </label>
+                                <!-- <select class="form-select rounded-pill mb-3" formControlName="examId" readonly>
                                     <option value="">Select Exam</option>
                                     <option *ngFor="let exam of exams" [value]="exam.id">{{ exam.title }}
                                     </option>
-                                </select>
+                                </select> -->
+                               {{examName}}
                             </h4>
+                            <div class="timer">
+  <h2>⏱ {{ displayTime  }}  </h2>
+</div>
                         </div>
                         <div class="card-body">
                             <div class="live-preview">
                                 <div class="row">
-                                    <div class="col-xxl-10 col-md-10 mb-9">
+                                    <div class="col-xxl-11 col-md-11 mb-10">
                                         <label for="questionText" class="form-label">Question</label>
                                         <input type="hidden" formControlName="id" value="">
                                         <input type="text" class="form-control rounded-pill"
@@ -30,7 +34,7 @@
                                             Question text is required.
                                         </div>
                                     </div>
-                                    <div class="col-xxl-2 col-md-2 mb-2">
+                                    <div class="col-xxl-1 col-md-1 mb-1">
                                         <label for="questionText" class="form-label">Marks</label>
                                         <input type="text" class="form-control rounded-pill" placeholder="Enter Marks"
                                             readonly id="questionMarks" formControlName="marks">
@@ -109,7 +113,7 @@
 
                                     <div class="col-xxl-12 col-md-12">
                                         <div class="d-flex flex-wrap gap-2">
-                                            <button type="button" (click)="previousQuest()"
+                                            <button type="button" (click)="previousQuest()" style="display: none;"
                                                 class="btn btn-primary waves-effect waves-light">
                                                 Previous
                                             </button>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OnGoingExamHeaderComponent } from './ongoing-exam-header/ongoing-exam-header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { StuFooterComponent } from '../../stu-footer/stu-footer.component';
@@ -38,10 +38,11 @@ import { OnGoingExamService } from 'src/app/shared/services/ongoing-exam.service
   ],
   standalone: true,
 })
-export class OnGoingExamComponent implements OnInit {
+export class OnGoingExamComponent implements OnInit, OnDestroy {
   questionId: any = 0;
   currentIndex: any = 0;
   examId: any;
+  examName: any = '';
   constructor(
     private formBuilder: FormBuilder,
     private questionMgmtService: QuestionMgmtService,
@@ -49,20 +50,23 @@ export class OnGoingExamComponent implements OnInit {
     private router: Router,
     private toastService: ToastService,
     private activatedRoute: ActivatedRoute,
-    private onGoingExamService: OnGoingExamService
+    private onGoingExamService: OnGoingExamService,
   ) {
     this.examId = this.activatedRoute.snapshot.paramMap.get(
-      HardCodedConstant.Id
+      HardCodedConstant.Id,
     );
+      this.getExams();
   }
 
   ngOnInit(): void {
-    this.getExams();
     this.getQuestionsOfExam();
+    this.startTimer();
+
   }
 
   questionModel: IQuestionModel = {};
   questType: any;
+  totalSeconds: number = 0;
   getQuestions() {
     if (this.answerOptions.controls.length > -1) {
       (this.createQuestionForm.get('answerOptions') as FormArray).clear();
@@ -70,7 +74,7 @@ export class OnGoingExamComponent implements OnInit {
     this.questionMgmtService.getById(this.questionId).subscribe((mod) => {
       this.questionModel = mod.data;
       this.createQuestionForm.patchValue({
-        id:this.questionModel.id,
+        id: this.questionModel.id,
         text: this.questionModel.text,
         type: this.questionModel.type,
         examId: this.questionModel.examId,
@@ -121,9 +125,15 @@ export class OnGoingExamComponent implements OnInit {
 
   questionTypes: QuestionType[] = [];
   exams: IExamModel[] = [];
+ 
   getExams() {
-    this.examMgmtService.get().subscribe((mod) => {
-      this.exams = mod.data;
+    this.examMgmtService.getById(this.examId).subscribe(mod=>{
+      const exam:IExamModel = mod.data;
+      if(exam){
+        this.examName = exam.title;
+        this.totalSeconds=Number(exam.durationInMinutes)*60;
+
+      }
     });
   }
 
@@ -136,7 +146,6 @@ export class OnGoingExamComponent implements OnInit {
   }
 
   removeItem(index: number) {
-    debugger;
     this.answerOptions.removeAt(index); // Remove a FormControl from the FormArray
   }
 
@@ -193,7 +202,7 @@ export class OnGoingExamComponent implements OnInit {
   createQuestion() {
     if (this.createQuestionForm.valid) {
       const model = this.createQuestionForm.getRawValue();
-      model.QuestionId=this.questionModel.id;
+      model.QuestionId = this.questionModel.id;
       if (model.type == 3) {
         model.answerOptions[this.selectedValRadio].isCorrect = true;
       }
@@ -205,7 +214,6 @@ export class OnGoingExamComponent implements OnInit {
         //   this.toastService.displayToast(mod.message, 'danger');
         // }
       });
-      debugger;
       //   model.type = Number(model.type);
       //   model.id = Number(this.questionId);
       //   model.examId = Number(model.examId);
@@ -219,5 +227,31 @@ export class OnGoingExamComponent implements OnInit {
       //     }
       //   });
     }
+  }
+
+  displayTime: string = '00:00:00';
+  intervalId!: ReturnType<typeof setInterval>;
+  startTimer(): void {
+    this.intervalId = setInterval(() => {
+      this.totalSeconds--;
+      this.displayTime = this.formatTime(this.totalSeconds);
+    }, 1000);
+  }
+  formatTime(totalSeconds: number): string {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    return `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+  }
+  pad(value: number): string {
+    return value < 10 ? '0' + value : value.toString();
+  }
+  clearTimer(): void {
+    clearInterval(this.intervalId);
+  }
+
+  ngOnDestroy(): void {
+    this.clearTimer(); // cleanup when component is destroyed
   }
 }
