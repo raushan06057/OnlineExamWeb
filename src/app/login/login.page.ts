@@ -36,8 +36,10 @@ export class LoginPage implements OnInit {
     this.loginService.login(loginRequestModel).subscribe(mod => {
       debugger;
       if (mod.success == true) {
+        debugger;
         this.dataTransferService.setData(KeyContants.Token, mod.data);
         this.dataTransferService.setData(KeyContants.OrganizationId, mod.organizationId);
+        this.dataTransferService.setData(KeyContants.Username, mod.username);
         // this.decodedToken = jwtDecode(mod.data);
         if (mod.roleName == 'Student') {
           this.router.navigate(['/student-dashboard']);

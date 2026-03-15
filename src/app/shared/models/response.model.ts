@@ -4,6 +4,7 @@ export interface IResponseModel {
     message: string;
     roleName:string;
     organizationId:any;
+    username:any;
 }
 
 export interface IResponseData extends IResponseModel{
