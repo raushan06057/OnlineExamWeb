@@ -254,4 +254,7 @@ export class OnGoingExamComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.clearTimer(); // cleanup when component is destroyed
   }
+  submit(){
+    this.router.navigateByUrl('ongoing-exam-result/'+this.examId);
+  }
 }

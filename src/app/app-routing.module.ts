@@ -49,6 +49,11 @@ const routes: Routes = [
         loadComponent: () => import('./dashboard/settings/org-management/student-dashboard/exam-progress-tracking/exam-progress-tracking.component')
           .then(mod => mod.ExamProgressTrackingComponent)
       },
+       {
+        path: 'stu-exam-result-hist',
+        loadComponent: () => import('./dashboard/settings/org-management/student-dashboard/stu-exam-result-history/stu-exam-result-history.component')
+          .then(mod => mod.StuExamResultHistoryComponent)
+      },
 
       {
         path: 'stu-account-settings',
@@ -81,6 +86,12 @@ const routes: Routes = [
       //       pathMatch: 'full'
       //     }
       // ]
+  },
+   {
+    path: 'ongoing-exam-result/:id',
+    loadComponent: () => import('./dashboard/settings/org-management/student-dashboard/stu-upcoming-exams/stu-exam-result/stu-exam-result.component')
+      .then(mod => mod.StuExamResultComponent)
+    
   },
   {
     path: '',

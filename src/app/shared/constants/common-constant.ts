@@ -24,6 +24,7 @@ export const CommonConstant = {
     guardianByIdAPIURL:"api/Guardians/GetById?id=",
     studentAPIURL:"api/Students",
     getUpComingExams:"api/Students/GetUpComingExams",
+    getStudentExamResults:"api/Students/GetStudentExamResults",
     studentByIdAPIURL:"api/Students/GetById?id=",
     examAPIURL:"api/Exams",
     examByIdAPIURL:"api/Exams/GetById?id=",
