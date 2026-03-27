@@ -1,0 +1,46 @@
+//  body {
+//       font-family: Arial, sans-serif;
+//       background-color: #f9fafb;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       height: 100vh;
+//       margin: 0;
+//     }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      max-width: 400px;
+      text-align: center;
+    }
+    .card h1 {
+      color: #2e7d32;
+      margin-bottom: 0.5rem;
+    }
+    .progress-bar {
+      background: #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .progress {
+      height: 16px;
+      width: 100%;
+      background: #4caf50;
+    }
+    .xp-badge {
+      display: inline-block;
+      background: #4caf50;
+      color: #fff;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      margin-top: 1rem;
+    }
+    .icon {
+      font-size: 48px;
+      color: #4caf50;
+      margin-bottom: 1rem;
+    }

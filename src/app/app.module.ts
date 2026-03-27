@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 import { ResponseInterceptor } from './shared/interceptor/response.interceptor';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HeadersInterceptor } from './shared/interceptor/headers.interceptor';
+import { LoadingInterceptor } from './shared/interceptor/loading.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -26,6 +27,12 @@ import { ReactiveFormsModule } from '@angular/forms';
       useClass: ResponseInterceptor,
       multi: true
     },
+    // 🔹 Loader Interceptor
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
 })

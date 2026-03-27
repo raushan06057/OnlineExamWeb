@@ -52,7 +52,7 @@ const routes: Routes = [
        {
         path: 'stu-exam-result-hist',
         loadComponent: () => import('./dashboard/settings/org-management/student-dashboard/stu-exam-result-history/stu-exam-result-history.component')
-          .then(mod => mod.StuExamResultHistoryComponent)
+          .then(mod => mod.StuExamResultHistoryComponent) 
       },
 
       {
