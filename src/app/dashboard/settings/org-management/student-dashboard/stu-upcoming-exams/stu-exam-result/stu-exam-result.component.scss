@@ -1,12 +1,32 @@
-//  body {
-//       font-family: Arial, sans-serif;
-//       background-color: #f9fafb;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       height: 100vh;
-//       margin: 0;
-//     }
+.left-space-17 {
+    padding-left: 17rem !important;
+}
+
+.pt-5 {
+    padding-top: 5rem !important;
+}
+
+.question {
+    background-color: #f9f9f9; /* Light gray background */
+    padding: 10px; /* Add some space inside the div */
+    border: 1px solid #ddd; /* Light border */
+    margin-bottom: 10px; /* Space between questions */
+}
+
+.question-number {
+    font-weight: bold; /* Bold question number */
+}
+
+.options {
+    margin-left: 20px; /* Indent options slightly */
+}
+.timer {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+
     .card {
       background: #fff;
       border-radius: 12px;

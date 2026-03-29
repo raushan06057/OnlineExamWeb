@@ -1,15 +1,15 @@
 <div id="layout-wrapper">
 
     <app-ongoing-exam-header></app-ongoing-exam-header>
-    <!-- <app-ongoing-exam-left-menu></app-ongoing-exam-left-menu> -->
+    <app-ongoing-exam-left-menu></app-ongoing-exam-left-menu>
     <div class="left-space-17 pt-5">
         <div class="row">
           <div class="card">
     <div class="icon">✔️</div>
     <h1>Great job!</h1>
     <p>You passed the module assessment.</p>
-    <p><strong>Score:</strong> 100%</p>
-    <p><strong>Duration:</strong> 5 minutes</p>
+     <p><strong>Total Marks : </strong> {{resultModel?.totalMarks}}</p>
+    <p><strong>Marks Obtained : </strong> {{resultModel?.marksObtained}}</p>
     <div class="progress-bar">
       <div class="progress"></div>
     </div>

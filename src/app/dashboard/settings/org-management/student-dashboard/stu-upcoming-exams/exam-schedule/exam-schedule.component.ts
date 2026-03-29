@@ -22,7 +22,6 @@ export class ExamScheduleComponent implements OnInit {
         this.get();
     }
     get() {
-        debugger;
         this.studentService.getUpComingExams().subscribe(mod => {
             this.examModels = mod.data;
         });

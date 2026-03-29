@@ -25,6 +25,7 @@ export const CommonConstant = {
     studentAPIURL:"api/Students",
     getUpComingExams:"api/Students/GetUpComingExams",
     getStudentExamResults:"api/Students/GetStudentExamResults",
+    getStudentExamResultById:"api/StudentQuestionAttempts/",
     studentByIdAPIURL:"api/Students/GetById?id=",
     examAPIURL:"api/Exams",
     examByIdAPIURL:"api/Exams/GetById?id=",

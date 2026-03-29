@@ -41,6 +41,7 @@ import { OnGoingExamService } from 'src/app/shared/services/ongoing-exam.service
 export class OnGoingExamComponent implements OnInit, OnDestroy {
   questionId: any = 0;
   currentIndex: any = 0;
+  questCounter: number = 1;
   examId: any;
   examName: any = '';
   constructor(
@@ -109,11 +110,13 @@ export class OnGoingExamComponent implements OnInit, OnDestroy {
     marks: ['', Validators.required],
     answerOptions: this.formBuilder.array([]),
   });
-
+  totalQuestions: number = 0;
   questions: IQuestionModel[] = [];
   getQuestionsOfExam() {
     this.questionMgmtService.getByExamId(this.examId).subscribe((mod) => {
+      debugger;
       this.questions = mod.data;
+      this.totalQuestions = this.questions.length;
       this.assignQuestionId();
       this.getQuestions();
     });
@@ -180,11 +183,12 @@ export class OnGoingExamComponent implements OnInit, OnDestroy {
   }
 
   nextQuest() {
-    if (this.currentIndex > -1) {
+    if (this.currentIndex > -1) {     
       this.currentIndex = this.currentIndex + 1;
       this.createQuestion();
       this.assignQuestionId();
       this.getQuestions();
+      this.questCounter++;
     }
   }
 
@@ -214,18 +218,11 @@ export class OnGoingExamComponent implements OnInit, OnDestroy {
         //   this.toastService.displayToast(mod.message, 'danger');
         // }
       });
-      //   model.type = Number(model.type);
-      //   model.id = Number(this.questionId);
-      //   model.examId = Number(model.examId);
-      //   model.marks = Number(this.createQuestionForm.get('marks')?.value);
-      //   this.questionMgmtService.update(model).subscribe((mod) => {
-      //     if (mod.success === true) {
-      //       this.router.navigate(['/dashboard/settings/question']);
-      //       this.toastService.displayToast(mod.message, 'success');
-      //     } else {
-      //       this.toastService.displayToast(mod.message, 'danger');
-      //     }
-      //   });
+     debugger;
+      if(this.totalQuestions <= this.questCounter){
+        this.submit();
+        return;
+      }
     }
   }
 

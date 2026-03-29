@@ -6,6 +6,7 @@ import { DataTransferService } from '../shared/services/data-transfer-service';
 import { KeyContants } from '../shared/constants/key-constants';
 import { ToastService } from '../shared/services/toast.service';
 import * as jwtDecode from 'jwt-decode';
+import { LoginRequestModel } from '../shared/models/request-models/login-request.model';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginPage implements OnInit {
     rememberLogin: [false]
   });
   signIn() {
-    let loginRequestModel = {
+    let loginRequestModel:LoginRequestModel = {
       username: this.userLoginForm.get('username')?.value,
       password: this.userLoginForm.get('password')?.value,
       rememberLogin: this.userLoginForm.get('rememberLogin')?.value,

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommonConstant } from '../constants/common-constant';
-import { ICourseModel } from '../models/common-models/course.model';
 import { IResponseDataArray, IResponseData } from '../models/response.model';
 import { IStudentModel } from '../models/common-models/student.model';
 
@@ -46,6 +45,12 @@ export class StudentMgmtService {
     getStudentExamResults(): Observable<IResponseDataArray> {
     return this.httpClient.get<IResponseDataArray>(
       CommonConstant.baseAPIURL + CommonConstant.getStudentExamResults,
+    );
+  }
+
+   getStudentExamResultById(id: any): Observable<IResponseData> {
+       return this.httpClient.get<IResponseData>(
+      CommonConstant.baseAPIURL + CommonConstant.getStudentExamResultById + id,
     );
   }
 }
