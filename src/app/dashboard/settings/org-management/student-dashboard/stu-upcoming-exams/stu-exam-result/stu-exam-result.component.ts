@@ -26,6 +26,7 @@ import { IStudentExamResultModel } from 'src/app/shared/models/common-models/stu
 export class StuExamResultComponent implements OnInit {
    examId: any;
    resultModel:IStudentExamResultModel | undefined;
+   feedback?:any;
   constructor(private studentService:StudentMgmtService,
      private activatedRoute: ActivatedRoute
   ) {
@@ -40,6 +41,7 @@ export class StuExamResultComponent implements OnInit {
     this.studentService.getStudentExamResultById(this.examId).subscribe((res)=>{
       debugger;  
       this.resultModel = res.data;
+      this.feedback = res?.chatResponse?.messages?.[0]?.contents?.[0]?.text ?? "No text available";
     });
   }
   
