@@ -53,4 +53,10 @@ export class StudentMgmtService {
       CommonConstant.baseAPIURL + CommonConstant.getStudentExamResultById + id,
     );
   }
+
+     getStudentExamResultByIdGraph(id: any): Observable<IResponseData> {
+       return this.httpClient.get<IResponseData>(
+      CommonConstant.baseAPIURL + CommonConstant.getStudentExamResultById + id+"/graph",
+    );
+  }
 }
